@@ -1,34 +1,36 @@
+include <pattern.scad>;
+
+// uncomment the next two lines if you are doing a mirrored panel
+mirroring = true;
+mirror = 2; // multiplicative factor
+// uncomment the next two lines if you are NOT doing a mirrored panel
+// mirroring = false;
+// mirror = 1; // multiplicative factor
 
 // board width in mm
-board_width = 200;
+board_width = 609.6; // 609.6mm = 24 inches
 // board height in mm
-board_height = 400;
-// board thickness in mm
-board_thick = 3;
+board_height = board_width * mirror;
 
 // top and bottom margin
-margin_rail = 25.6;
+margin_rail = 25.6;  // 25.6mm = 1 inch
 // left and right margin
 margin_stile = 25.6;
 
-// hole offset (1 inch or 25.6mm is standard
-//hole_offset = 25.60;
-// hole radius (1/4" = 6.25mm)
-radius = 6.25;
+// hole radius
+radius = 6.25; // 6.25mm = 1/4 inch
 diameter = radius * 2;
-// hole height
-hole_height = 3;
-
-holes = [[1,1,1], [1,1,1]];
+// hole depth
+hole_depth = 3;
 
 // evenly spaced holes in both dimensions
 spacing_horizontal = (board_width - 2*margin_stile - len(holes[0])*diameter)/(len(holes[0])-1);
-spacing_vertical = (board_height - 2*margin_rail - len(holes)*diameter)/(len(holes)-1);
+spacing_vertical = (board_height - 2*margin_rail - len(holes)*mirror*diameter)/(len(holes)*mirror -1);
 
 // execute
 main_module();
 
-module main_module() { // create module
+module main_module() {
     difference() {
 
         square([board_width, board_height]);
@@ -36,7 +38,13 @@ module main_module() { // create module
         for (y=[0:len(holes)-1]) {
             for (x=[0:len(holes[0])-1]) {    
                 if (holes[y][x]) {
-                    translate ([margin_stile + radius + x*(diameter + spacing_horizontal), margin_rail + radius + y*(diameter + spacing_vertical), 0]) rotate ([0,0,0]) cylinder(hole_height, radius, radius, $fn=60, true);
+                    // draw the pattern
+                    translate ([/*x*/ margin_stile + radius + x*(diameter + spacing_horizontal), /*y*/ margin_rail + radius + y*(diameter + spacing_vertical), 0]) rotate ([0,0,0]) cylinder(hole_depth, radius, radius, $fn=60, true);
+                    
+                    if (mirroring) {
+                        // mirror the pattern vertically
+                        translate ([/*same x*/ margin_stile + radius + x*(diameter + spacing_horizontal), /*new y*/ board_height - margin_rail - radius - y*(diameter + spacing_vertical), 0]) rotate ([0,0,0]) cylinder(hole_depth, radius, radius, $fn=60, true);
+                    }
                 }
             }
         }
