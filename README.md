@@ -16,12 +16,9 @@ Load `bad.scad` into OpenSCAD and click the render icon.  Once rendering is comp
 
 The module reads the file `pattern.scad` as input.  The included pattern is the same one as in the original [patent](https://patents.google.com/patent/US5817992A/en).  It originated from a spreadsheet posted in a long and informative thread at [gearspace](https://gearspace.com/board/bass-traps-acoustic-panels-foam-etc/459885-rpg-bad-panel-detailed-plans.html).
 
-
 There are variables to set the dimensions of the board, border around the edges, and size of the holes.  The module will evenly space the holes within the given tableau.
 
-The `mirroring` boolean variable at the top of the file determines if the panel will be mirrored vertically.  If set to `true`, then the pattern will be mirrored as seen in the image to the right.  This is suitable for mounting over a 24"x48" Owens Corning 703 panel, for example.  Set `mirroring` to `false` to generate a 24"x24" pattern as seen in the topmost image.
-
-You can generate an inverse pattern (where the holes and reflective areas are transposed) by changing the main loop's `if(holes)` condition to be `if(!holes)`.
+The `mirroring` boolean variable at the top of the file determines if the panel will be mirrored vertically.  If set to `true`, then the pattern will be mirrored in inverse (where the holes and reflective areas are transposed) as seen in the image to the right.  This is suitable for mounting over a 24"x48" Owens Corning 703 panel, for example.  Set `mirroring` to `false` to generate a 24"x24" pattern as seen in the topmost image.
 
 
 
