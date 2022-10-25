@@ -18,7 +18,7 @@ The module reads the file `pattern.scad` as input.  The included pattern is the 
 
 There are variables to set the dimensions of the board, border around the edges, and size of the holes.  The module will evenly space the holes within the given tableau.
 
-The `mirroring` boolean variable at the top of the file determines if the panel will be mirrored vertically.  If set to `true`, then the pattern will be mirrored in inverse (where the holes and reflective areas are transposed) as seen in the image to the right.  This is suitable for mounting over a 24"x48" Owens Corning 703 panel, for example.  Set `mirroring` to `false` to generate a 24"x24" pattern as seen in the topmost image.
+The `mirroring` boolean variable at the top of the file determines if the panel will be doubled in height vertically.  This is suitable for mounting over a 24"x48" Owens Corning 703 panel, for example.  If set to `true`, then by default the pattern will be copied in inverse (where the holes and reflective areas are transposed) as seen in the image to the right.  You can experiment with other mirror patterns by changing the boolean conditions in the code.  Set `mirroring` to `false` to generate a 24"x24" pattern as seen in the topmost image.
 
 
 

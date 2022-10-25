@@ -70,8 +70,19 @@ module main_module() {
                 if (holes[y][x]) {
                     // draw the pattern
                     translate ([/*x*/ margin_stile + radius + x*(diameter + spacing_horizontal), /*y*/ margin_rail + radius + y*(diameter + spacing_vertical), 0]) circle(radius);
+
+                    if (mirroring) {
+                        if (false) {
+                            // mirror the pattern
+                            translate ([/*same x*/ margin_stile + radius + x*(diameter + spacing_horizontal), /*new y*/ board_height - margin_rail - radius - y*(diameter + spacing_vertical), 0]) circle(radius);
+                        } else if (false) {
+                            // duplicate the pattern
+                            translate ([/*same x*/ margin_stile + radius + x*(diameter + spacing_horizontal), /*new y*/ board_height/2 + radius + y*(diameter + spacing_vertical), 0]) circle(radius);
+                        }
+                    }
+
                 } else if (mirroring) {
-                    // mirror an inverted pattern vertically
+                    // copy an inverted pattern
                     translate ([/*same x*/ margin_stile + radius + x*(diameter + spacing_horizontal), /*new y*/ board_height/2 + radius + y*(diameter + spacing_vertical), 0]) circle(radius);
                 }
             }
