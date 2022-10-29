@@ -43,11 +43,11 @@ board_width = 609.6; // 609.6mm = 24 inches
 board_height = board_width * mirror;
 
 // hole radius
-radius = 6.25; // 6.25mm = 1/4 inch
+radius = 6.35; // 6.35mm = 1/4 inch
 diameter = radius * 2;
 
 // top and bottom margin
-margin_rail = diameter;  // 25.6mm = 1 inch
+margin_rail = diameter;  // 25.4mm = 1 inch
 // left and right margin
 margin_stile = diameter;
 
